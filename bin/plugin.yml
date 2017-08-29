@@ -1,0 +1,13 @@
+main: me.skelletonx.br.GladiadorReloaded.Gladiador
+name: GladiadorReloaded
+author: Herobrinedobem and SkelletonX
+version: 1.0
+description: Plugin de gladiador automatico base totalmente feita e varios eventos por Herobrinedobem, o plugin é dele
+
+commands:
+  gladiador:
+    aliases: [glad]
+    description: Todos os comandos do plugin para players
+  gladiadoradmin:
+    aliases: [gladadm]
+    description: Todos os comandos do plugin para admins

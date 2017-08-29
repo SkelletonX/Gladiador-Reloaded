@@ -1,0 +1,100 @@
+Mensagens_Player:
+  Entrou: '&b[Gladiador] &3Voce entrou no gladiador, boa sorte!'
+  Saiu: '&b[Gladiador] &3Voce saiu do gladiador, covarde!'
+  Fechado: '&b[Gladiador] &3Nao existe nenhum evento gladiador aberto no momento'
+  Ocorrendo: '&b[Gladiador] &3O gladiador ja esta ocorrendo no momento'
+  Ja_Esta: '&b[Gladiador] &3Voce ja esta no gladiador'
+  Nao_Esta: '&b[Gladiador] &3Voce nao esta no gladiador'
+  Necessario_Clan: '&b[Gladiador] &3E necessario ter um clan para entrar no gladiador'
+  Camarote: '&b[Gladiador] &3Voce entrou no comarote do gladiador'
+  DC: '&b[Gladiador] &3O jogador &b<player> &3 deu dc'
+  Sair: '&b[Gladiador] &3O jogador &b<player> &3 saiu do gladiador'
+  Morte: '&b[Gladiador] &3O jogador &b<player> &3 foi morto por &b<killer>'
+  kickado: '&b[Gladiador] &3Voce foi kickado do gladiador por um staffer'
+  Clan_Kikado: '&b[Gladiador] &3O seu clan foi kickado do gladiador por um staffer'
+  Sem_Money: '&b[Gladiador] &3Voce nao tem dinheiro suficiente'
+  Comando_Bloqueado: '&b[Gladiador] &3Esse comando esta bloqueado no gladiador'
+  Default:
+  - '&b[Gladiador] Comandos'
+  - '&b/gladiador entrar &3- Entra no evento gladiador'
+  - '&b/gladiador sair &3- Sai do evento gladiador'
+  - '&b/gladiador camarote &3- Entra no camarote do gladiador'
+  - '&b/gladiador status &3- Mostra o status do gladiador'
+  Anuncio_Cancelado:
+  - '&b[Gladiador] &3Evento cancelado!'
+  - '&b[Gladiador] &3Motivo: <motivo>'
+  Anuncio_Aberto:
+  - '&b[Gladiador] &3Evento Gladiador Aberto!'
+  - '&b[Gladiador] &3Para participar digite &b/gladiador entrar'
+  - '&b[Gladiador] &3Preco da entrada: &b<preco> &3Coins'
+  - '&b[Gladiador] &3Limite de membros por clan: &b<limite>'
+  - '&b[Gladiador] &3Numero de players: &b<players>'
+  - '&b[Gladiador] &3Numero de clans: &b<clans>'
+  Anuncio_Iniciado:
+  - '&b[Gladiador] &3Gladiador Em Andamento!'
+  - '&b[Gladiador] &3Clans <clans>'
+  - '&b[Gladiador] &3Players <players>'
+  Anuncio_Fim:
+  - '&b[Gladiador] &3Fim Do Gladiador!'
+  - '&b[Gladiador] &3O clan vencedor foi: <vencedor>'
+  - '&b[Gladiador] &3Tags Gladiador dadas para: <gladiadores>'
+  - '&b[Gladiador] &3Tag Mito dada para: <mito>'
+  - '&b[Gladiador] &3Premios enviado para os Liders e Membros'
+  Status:
+  - '&b[Gladiador] Status'
+  - '&bJogadores Vivos: &3<jogadores>'
+  - '&bClans Paricipantes: &3<clans>'
+Localizacoes:
+  Spawn_Entrada:
+    World: Gladiador
+    X: -662.4295186663979
+    Y: 4.0
+    Z: 1468.097419182741
+  Spawn_Saida:
+    World: spawn
+    X: -53.51990697373702
+    Y: 72.0
+    Z: 40.51160677907059
+  Spawn_Camarote:
+    World: Gladiador
+    X: -665.5430891305441
+    Y: 48.0
+    Z: 1487.8341956365075
+Gladiador:
+  Deixar_De_Noite: true
+  Retirar_Chuva: true
+  Anuncio_Quantidade: 5
+  Anuncio_Tempo_Entre_As_Mensagens: 10
+  Limite_De_Membros: 30
+  Eliminar_Randomicamente_Limite: true
+  Preco_Para_Entrar: 1000
+  Necessario_Ter_Clan_Para_Participar: true
+  Ativar_Mensagens_De_Morte: true
+  Ativar_Mensagens_De_Sair: true
+  Ativar_Mensagens_De_DC: true
+  Ultimo_Clan_Vencedor: 'null'
+Gladiador_Premio:
+  Money_Para_Cada_Integrante: 10000
+  Money_Para_Cada_Lider: 100000
+Mito_Tag:
+  Jogador_Com_A_Tag_Atual_No_Glad: 
+Gladiador_Tag:
+  Ativar: true
+  Tag1: SkelletonX
+  Tag2: ''
+  ChanceSorteio: 30
+Automacao:
+  Ativar: true
+  Dia: 6
+  Hora: 22
+  Minuto: 30
+Clan_Tag:
+  Ativar_Tab_Tag: true
+  Formato_Com_Clan: '{clantag}&8.&f'
+  Formato_Sem_Clan: '&f'
+  Tempo_Para_Atualizar: 30
+Comandos_Bloqueados:
+- /spawn
+- /home
+- /warp
+- /sethome
