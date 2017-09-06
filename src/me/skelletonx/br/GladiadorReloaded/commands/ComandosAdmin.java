@@ -28,7 +28,7 @@ public class ComandosAdmin implements CommandExecutor{
             p = (Player)cs;
         }
         if(cmd.getName().equalsIgnoreCase("gladiadoradmin")){
-            if(cs.hasPermission("hgladiador.staff")){
+            if(cs.hasPermission("gladiador.staff")){
                 if(args.length == 0){
                     cs.sendMessage("§4[Gladiador] Comandos");
                     cs.sendMessage("§4/gladadm iniciar §c- Inicia o gladiador");

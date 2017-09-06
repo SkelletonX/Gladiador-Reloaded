@@ -30,7 +30,7 @@ public class ComandosPlayer implements CommandExecutor{
                     sendMessageList(p, config.getStringList("Mensagens_Player.Default"));
                 //Comando Entrar
                 }else if(args.length == 1 && (args[0].equalsIgnoreCase("entrar"))){
-                    if(p.hasPermission("hgladiador.entrar")){
+                    if(p.hasPermission("Gladiador.entrar")){
                         if(vg.isAberto){
                             if(vg.isOcorrendo){
                                 if(config.getBoolean("Gladiador.Necessario_Ter_Clan_Para_Participar")){
@@ -68,7 +68,7 @@ public class ComandosPlayer implements CommandExecutor{
                     }
                 //Comando Sair
                 }else if(args.length == 1 && (args[0].equalsIgnoreCase("sair"))){
-                    if(p.hasPermission("hgladiador.sair")){
+                    if(p.hasPermission("Gladiador.sair")){
                         if(vg.isAberto){
                             if(vg.todosParticipantes.contains(p)){
                                 p.teleport(tm.getTeleportSaida());
@@ -94,7 +94,7 @@ public class ComandosPlayer implements CommandExecutor{
                     }
             //Comando Camarote
             }else if(args.length == 1 && (args[0].equalsIgnoreCase("camarote"))){
-                if(p.hasPermission("hgladiador.camarote")){
+                if(p.hasPermission("Gladiador.camarote")){
                     if(vg.isOcorrendo){
                         p.teleport(tm.getTeleportCamarote());
                         p.sendMessage(config.getString("Mensagens_Player.Camarote").replace("&", "§"));
@@ -106,8 +106,25 @@ public class ComandosPlayer implements CommandExecutor{
                     }else{
                         p.sendMessage("§cSem Permissao");
                     }
+                }else if(args.length == 1 && (args[0].equalsIgnoreCase("tags"))){
+                    if(p.hasPermission("Gladiador.tags")){
+                        if(vg.isMitoEnable){
+                            if(vg.isGladiadorEnable){
+                                sendMessageListTags(p, config.getStringList("Mensagens_Player.Tags"), true, true);
+                                return true;
+                            }else{
+                                sendMessageListTags(p, config.getStringList("Mensagens_Player.Tags"), false, true);
+                                return true;
+                            }
+                        }else{
+                            sendMessageListTags(p, config.getStringList("Mensagens_Player.Tags"), true, false);
+                            return true;
+                        }
+                }else{
+                    p.sendMessage("§cSem Permissao");
+                }
             }else if(args.length == 1 && (args[0].equalsIgnoreCase("status"))){
-                if(p.hasPermission("hgladiador.status")){
+                if(p.hasPermission("Gladiador.status")){
                     if(vg.isOcorrendo){
                         sendMessageListStatus(p, config.getStringList("Mensagens_Player.Status"));
                     }else{
@@ -154,4 +171,48 @@ public class ComandosPlayer implements CommandExecutor{
             p.sendMessage(s.replace("&", "§").replace("<players>", String.valueOf(vg.todosParticipantes.size())).replace("<clans>", builder.toString()));
         }
     }
+    
+    private void sendMessageListTags(Player p, List<String> mensagens, boolean glad, boolean mitoboo){
+        if(glad){
+            if(mitoboo){
+                StringBuilder gladiadores = new StringBuilder();
+                for(String s : config.getStringList("Gladiador_Tag.Jogador_Com_A_Tag_Atual")){
+                    if(!gladiadores.toString().contains(s)){
+                        gladiadores.append(s);
+                    }
+                }
+
+                StringBuilder mito = new StringBuilder();
+                for(String s : config.getStringList("Mito_Tag.Jogador_Com_A_Tag_Atual")){
+                    if(!mito.toString().contains(s)){
+                        mito.append(s);
+                    }
+                }
+                for (String s : mensagens) {
+                    p.sendMessage(s.replace("&", "§").replace("<gladiadores>", gladiadores.toString()).replace("<mito>", mito.toString()));
+                }
+            }else{
+                StringBuilder gladiadores = new StringBuilder();
+                for(String s : config.getStringList("Gladiador_Tag.Jogador_Com_A_Tag_Atual")){
+                    if(!gladiadores.toString().contains(s)){
+                        gladiadores.append(s);
+                    }
+                }
+                for (String s : mensagens) {
+                    p.sendMessage(s.replace("&", "§").replace("<gladiadores>", gladiadores.toString()));
+                }
+            }
+        }else{
+            StringBuilder mito = new StringBuilder();
+            for(String s : config.getStringList("Mito_Tag.Jogador_Com_A_Tag_Atual")){
+                if(!mito.toString().contains(s)){
+                    mito.append(s);
+                }
+            }
+            for (String s : mensagens) {
+                p.sendMessage(s.replace("&", "§").replace("<mito>", mito.toString()));
+            }
+        }
+    }
+    
 }

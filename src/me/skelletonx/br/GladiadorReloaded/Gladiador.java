@@ -143,5 +143,5 @@ public class Gladiador extends JavaPlugin{
     
     public int getMinute(){
        return data.get(Calendar.MINUTE);
-    }
+    }   
 }

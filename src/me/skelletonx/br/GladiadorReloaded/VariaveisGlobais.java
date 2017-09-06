@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 public class VariaveisGlobais {
 
 	public boolean isNoite;
-    public boolean isMitoEnable;
-    public boolean isGladiadorEnable;
+    public boolean isMitoEnable = true;
+    public boolean isGladiadorEnable = true;
     public boolean isChuvendo;
     public boolean isOcorrendo;
     public boolean isAberto;
@@ -29,13 +29,12 @@ public class VariaveisGlobais {
         clans.clear();
         premioParaCada = Gladiador.getGladiador().getConfig().getInt("Gladiador_Premio.Money_Para_Cada_Integrante");
         premioParaLider = Gladiador.getGladiador().getConfig().getInt("Gladiador_Premio.Money_Para_Cada_Lider");
-        isGladiadorEnable = Gladiador.getGladiador().getConfig().getBoolean("Gladiador_Tag.Ativar");
         isNoite = Gladiador.getGladiador().getConfig().getBoolean("Gladiador.Deixar_De_Noite");
         isChuvendo = Gladiador.getGladiador().getConfig().getBoolean("Gladiador.Retirar_Chuva");
         quantMensagens = Gladiador.getGladiador().getConfig().getInt("Gladiador.Anuncio_Quantidade");
         precoParaParticipar = Gladiador.getGladiador().getConfig().getInt("Gladiador.Preco_Para_Entrar");
         limiteDeMembros = Gladiador.getGladiador().getConfig().getInt("Gladiador.Limite_De_Membros");
-        quantGladiadores = 2;
+        quantGladiadores = Gladiador.getGladiador().getConfig().getInt("Gladiador_Tag.Quantidade");
         quantGladiadoresAdicionados = 0;
     }
     
@@ -45,7 +44,7 @@ public class VariaveisGlobais {
         quantMensagens = Gladiador.getGladiador().getConfig().getInt("Gladiador.Anuncio_Quantidade");
         precoParaParticipar = Gladiador.getGladiador().getConfig().getInt("Gladiador.Preco_Para_Entrar");
         limiteDeMembros = Gladiador.getGladiador().getConfig().getInt("Gladiador.Limite_De_Membros");
-        quantGladiadores = 3;
+        quantGladiadores = Gladiador.getGladiador().getConfig().getInt("Gladiador_Tag.Quantidade");
         quantGladiadoresAdicionados = 0;
     }
     

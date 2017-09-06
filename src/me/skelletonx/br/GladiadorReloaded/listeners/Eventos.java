@@ -15,7 +15,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class Eventos implements Listener{
     
@@ -27,7 +26,7 @@ public class Eventos implements Listener{
     
     @EventHandler
     public void onPlayerJoinEvent(PlayerJoinEvent e){
-        if(e.getPlayer().hasPermission("hgladiador.staff")){
+        if(e.getPlayer().hasPermission("Gladiador.staff")){
             if(vg.isOcorrendo){
                 e.getPlayer().sendMessage("§4[Gladiador] §cO evento gladiador esta ocorrendo no momento!");
             }
@@ -47,6 +46,7 @@ public class Eventos implements Listener{
             }
         }
     }
+    
     @EventHandler
     public void onPlayerQuitEvent(PlayerQuitEvent e){
         if(vg.todosParticipantes.contains(e.getPlayer())){
@@ -69,11 +69,11 @@ public class Eventos implements Listener{
         	if(e.getEntity().getPlayer() instanceof Player){
 	            Player matou = e.getEntity().getKiller();
 	            Player morreu = e.getEntity().getPlayer();
-	            if(morreu.getName().equalsIgnoreCase(config.getString("Mito_Tag.Jogador_Com_A_Tag_Atual_No_Glad"))){
-	            	e.getEntity().getPlayer().teleport(tm.getTeleportSaida());
-	            	config.set("Mito_Tag.Jogador_Com_A_Tag_Atual_No_Glad", matou.getName());
+	            if(morreu.getName().equalsIgnoreCase(config.getString("Mito_Tag.Jogador_Com_A_Tag_Atual"))){
+	                config.set("Mito_Tag.Jogador_Com_A_Tag_Atual", matou.getName());
 	                hg.saveConfig();
 	            }
+	            
 	            if(vg.isOcorrendo){
 		            if(vg.todosParticipantes.contains(e.getEntity().getPlayer())){
 		                vg.todosParticipantes.remove(e.getEntity().getPlayer());
@@ -104,13 +104,22 @@ public class Eventos implements Listener{
     
     @EventHandler
     public void onChatMessageEvent(ChatMessageEvent e){
-        if(e.getTags().contains("gladiador")){
-        	String name = e.getSender().getName();
-        	String tag1 = config.getString("Gladiador_Tag.Tag1");
-        	String tag2 = config.getString("Gladiador_Tag.Tag2");
-        	if(name.equalsIgnoreCase(tag1) || name.equalsIgnoreCase(tag2))
-                    e.setTagValue("gladiador", "&6 [Gladiador]");
+        if(vg.isMitoEnable){
+            if(e.getTags().contains("mito")){
+                if(e.getSender().getName().equalsIgnoreCase(config.getString("Mito_Tag.Jogador_Com_A_Tag_Atual"))){
+                    e.setTagValue("mito", config.getString("Mito_Tag.Tag").replace("&", "§"));
+                }
             }
+        }
+        if(vg.isGladiadorEnable){
+            if(e.getTags().contains("gladiador")){
+                for(String s : config.getStringList("Gladiador_Tag.Jogador_Com_A_Tag_Atual")){
+                    if(e.getSender().getName().equalsIgnoreCase(s)){
+                        e.setTagValue("gladiador", config.getString("Gladiador_Tag.Tag").replace("&", "§"));
+                    }
+                }
+            }
+        }
     }
     
     @EventHandler
