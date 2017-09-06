@@ -21,7 +21,7 @@ public class Gladiador extends JavaPlugin{
 
     public Scoreboard scoreboard = null;
     public SimpleClans core;
-    public VariaveisGlobais vg = new VariaveisGlobais();
+    public static VariaveisGlobais vg = new VariaveisGlobais();
     public Economy economy = null;
     
     @Override
@@ -112,8 +112,6 @@ public class Gladiador extends JavaPlugin{
         return core.getClanManager().getClanByPlayerName(p.getName());
     }
     
-    private Calendar data = Calendar.getInstance();
-    
     public void iniciarSchedulerDeAutomacao(){
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
             scheduler.scheduleSyncRepeatingTask(this, new Runnable() {
@@ -134,14 +132,14 @@ public class Gladiador extends JavaPlugin{
     }
     
     public int getDay(){
-       return data.get(Calendar.DAY_OF_WEEK);
+       return Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
     }
     
     public int getHour(){
-       return data.get(Calendar.HOUR_OF_DAY);
+       return Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     }
     
     public int getMinute(){
-       return data.get(Calendar.MINUTE);
-    }   
+       return Calendar.getInstance().get(Calendar.MINUTE);
+    }
 }
