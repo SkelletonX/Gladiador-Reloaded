@@ -83,7 +83,6 @@ public class GladiadorManager {
     		//Se o nome for legível e a chance for maior que o número gerado
     		if(name != null && Math.random() >= chance)
     		{
-<<<<<<< HEAD
     			gladiadores.add(hg.getServer().getPlayer(name));
     		}
             for(Player pa : gladiadores){
@@ -104,14 +103,6 @@ public class GladiadorManager {
                 config.set("Mito_Tag.Jogador_Com_A_Tag_Atual", PlayerSortudo);
                 hg.saveConfig();
                 mito = player.toPlayer();
-=======
-    			String glad = config.getString("Gladiador_Tag.Tag1");
-    			
-    			//Se for o primeiro gladiador, pode ser qualquer um, se não verifica o escolhido é igual ao primeiro
-    			//Caso seja, ignore
-    			if(primeiro || !name.equals(glad))
-    				return player;
->>>>>>> 4569959bec1568f4761e50d345300afa0ea186b9
     		}
     	}
     }
@@ -119,27 +110,6 @@ public class GladiadorManager {
         vg.isAberto = false;
         BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
         id2 = scheduler.scheduleSyncRepeatingTask(hg, new Runnable() {
-<<<<<<< HEAD
-=======
-        	
-        	public void gladfinal() {
-			gladiadores.get(0).getName();
-                sendMessageList3(config.getStringList("Mensagens_Player.Anuncio_Fim"), vencedor, gladiadores, mito);
-                for(ClanPlayer cp : vencedor.getOnlineMembers()){
-                    hg.economy.depositPlayer(cp.getName(), vg.premioParaCada);
-                }
-                for(ClanPlayer cp : vencedor.getLeaders()){
-                    hg.economy.depositPlayer(cp.getName(), vg.premioParaLider);
-                }
-                for(Player p : vg.todosParticipantes){
-                    p.teleport(tm.getTeleportSaida());
-                    System.out.println("[Gladiador] Todos Participantes foram para TeleportSaida!");
-                }
-                vg.resetVariaveis();
-                hg.getServer().getScheduler().cancelTask(id2);
-
-        	}
->>>>>>> 4569959bec1568f4761e50d345300afa0ea186b9
 			@Override
             public void run() {
                 if(vg.isOcorrendo){
@@ -230,10 +200,10 @@ public class GladiadorManager {
                 if(builder.toString().isEmpty()){
                     builder.append(clans);
                 }else{
-                    builder.append("�0, " + clans);
+                    builder.append("§0, " + clans);
                 }
             }
-             hg.getServer().broadcastMessage(s.replace("&", "�").replace("<preco>", String.valueOf(vg.precoParaParticipar)).replace("<limite>", String.valueOf(vg.limiteDeMembros)).replace("<players>", String.valueOf(vg.todosParticipantes.size())).replace("<clans>", builder.toString()));
+             hg.getServer().broadcastMessage(s.replace("&", "§").replace("<preco>", String.valueOf(vg.precoParaParticipar)).replace("<limite>", String.valueOf(vg.limiteDeMembros)).replace("<players>", String.valueOf(vg.todosParticipantes.size())).replace("<clans>", builder.toString()));
         }*/
     }
     
@@ -242,15 +212,9 @@ public class GladiadorManager {
             for(Player p : gladiadores){
             	if(mito != null){
             		if(gladiadores != null){
-<<<<<<< HEAD
-            			hg.getServer().broadcastMessage(s.replace("&", "�").replace("<vencedor>", vencedor.getColorTag()).replace("<gladiadores>", p.getName()).replace("<mito>", mito.getName()));
+            			hg.getServer().broadcastMessage(s.replace("&", "§").replace("<vencedor>", vencedor.getColorTag()).replace("<gladiadores>", p.getName()).replace("<mito>", mito.getName()));
             		}else{
-            			hg.getServer().broadcastMessage(s.replace("&", "�").replace("<vencedor>", vencedor.getColorTag()).replace("<mito>", mito.getName()));
-=======
-            			hg.getServer().broadcastMessage(s.replace("&", "§").replace("<vencedor>", vencedor.getColorTag()).replace("<gladiadores>", p.getName()).replace("<mito>", mito));
-            		}else{
-            			hg.getServer().broadcastMessage(s.replace("&", "§").replace("<vencedor>", vencedor.getColorTag()).replace("<mito>", mito));
->>>>>>> 4569959bec1568f4761e50d345300afa0ea186b9
+            			hg.getServer().broadcastMessage(s.replace("&", "§").replace("<vencedor>", vencedor.getColorTag()).replace("<mito>", mito.getName()));
             		}
             	}else{
             		hg.getServer().broadcastMessage(s.replace("&", "§").replace("<vencedor>", vencedor.getColorTag()).replace("<gladiadores>", p.getName()));
