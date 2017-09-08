@@ -1,5 +1,7 @@
 package me.skelletonx.br.GladiadorReloaded.commands;
 
+import static me.skelletonx.br.GladiadorReloaded.Gladiador.vg;
+
 import java.util.List;
 
 import org.bukkit.command.Command;
@@ -9,7 +11,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import me.skelletonx.br.GladiadorReloaded.Gladiador;
-import me.skelletonx.br.GladiadorReloaded.VariaveisGlobais;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager;
 
 public class ComandosPlayer implements CommandExecutor{
@@ -17,7 +18,6 @@ public class ComandosPlayer implements CommandExecutor{
     private Gladiador hg = Gladiador.getGladiador();
     private final FileConfiguration config = hg.getConfig();
     private TeleportesManager tm = new TeleportesManager();
-    private VariaveisGlobais vg = hg.vg;
     
 	@Override
     public boolean onCommand(CommandSender cs, Command cmd, String string, String[] args) {
