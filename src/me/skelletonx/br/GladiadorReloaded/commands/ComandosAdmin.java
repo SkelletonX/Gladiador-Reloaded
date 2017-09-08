@@ -1,7 +1,10 @@
 package me.skelletonx.br.GladiadorReloaded.commands;
 
-import net.sacredlabyrinth.phaed.simpleclans.Clan;
-import net.sacredlabyrinth.phaed.simpleclans.ClanPlayer;
+import static me.skelletonx.br.GladiadorReloaded.Gladiador.vg;
+
+import java.util.logging.Level;
+
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,16 +12,16 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import me.skelletonx.br.GladiadorReloaded.Gladiador;
-import me.skelletonx.br.GladiadorReloaded.VariaveisGlobais;
 import me.skelletonx.br.GladiadorReloaded.manager.GladiadorManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager;
+import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
+import net.sacredlabyrinth.phaed.simpleclans.Clan;
+import net.sacredlabyrinth.phaed.simpleclans.ClanPlayer;
 
 public class ComandosAdmin implements CommandExecutor{
     
     private Gladiador hg = Gladiador.getGladiador();
     private final FileConfiguration config = hg.getConfig();
-    private TeleportesManager tm = new TeleportesManager();
-    private VariaveisGlobais vg = hg.vg;
     private GladiadorManager gm = new GladiadorManager();
 
     @Override
@@ -38,20 +41,24 @@ public class ComandosAdmin implements CommandExecutor{
                     cs.sendMessage("§4/gladadm set entrada/saida/camarote §c- Seta as localizacoes");
                     cs.sendMessage("§4/gladadm reload §c- Da reload na config do plugin");
                 }else if(args.length == 1 && (args[0].equalsIgnoreCase("iniciar"))){
-                    System.out.println(String.valueOf(vg.isOcorrendo));
+                    Bukkit.getLogger().log(Level.FINE, String.valueOf(vg.isOcorrendo));
+                    if(TeleportesManager.getTeleport(Locations.ENTRADA) == null && TeleportesManager.getTeleport(Locations.SAIDA) == null){
+                    	cs.sendMessage("Entrada/Saida não foi definido.");
+                    	return true;
+                    }
                     if(!vg.isOcorrendo){
                         gm.iniciarAnuncios();
                     }else{
                         cs.sendMessage("§4[Gladiador] §cJa existe um gladiador ocorrendo no momento");
                     }
                 }else if(args.length == 2 && (args[0].equalsIgnoreCase("set")) && (args[1].equalsIgnoreCase("entrada"))){
-                    tm.setLocationEntrada(p);
+                	TeleportesManager.setLocationEntrada(p);
                     cs.sendMessage("§4[Gladiador] §cEntrada setada com sucesso");
                 }else if(args.length == 2 && (args[0].equalsIgnoreCase("set")) && (args[1].equalsIgnoreCase("saida"))){
-                    tm.setLocationSaida(p);
+                	TeleportesManager.setLocationSaida(p);
                     cs.sendMessage("§4[Gladiador] §cSaida setada com sucesso");
                 }else if(args.length == 2 && (args[0].equalsIgnoreCase("set")) && (args[1].equalsIgnoreCase("camarote"))){
-                    tm.setLocationCamarote(p);
+                	TeleportesManager.setLocationCamarote(p);
                     cs.sendMessage("§4[Gladiador] §cCamarote setado com sucesso");
                 }else if(args.length == 1 && (args[0].equalsIgnoreCase("cancelar"))){
                     if(vg.isOcorrendo){
@@ -67,7 +74,7 @@ public class ComandosAdmin implements CommandExecutor{
                         }else{
                             if(vg.todosParticipantes.contains(kickado)){
                                 vg.todosParticipantes.remove(kickado);
-                                kickado.teleport(tm.getTeleportSaida());
+                                kickado.teleport(TeleportesManager.getTeleport(Locations.SAIDA));
                                 kickado.sendMessage(config.getString("Mensagens_Player.kickado").replace("&", "§"));
                                 cs.sendMessage("§4[Gladiador] §cPlayer kickado com sucesso");
                             }else{
@@ -89,7 +96,7 @@ public class ComandosAdmin implements CommandExecutor{
                                     for(ClanPlayer cp : kickado.getOnlineMembers()){
                                         Player cpp = hg.getServer().getPlayer(cp.getName());
                                         if(vg.todosParticipantes.contains(cpp)){
-                                            cpp.teleport(tm.getTeleportSaida());
+                                            cpp.teleport(TeleportesManager.getTeleport(Locations.SAIDA));
                                             cpp.sendMessage(config.getString("Mensagens_Player.Clan_kickado").replace("&", "§"));
                                             vg.todosParticipantes.remove(cpp);
                                         }

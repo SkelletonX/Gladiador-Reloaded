@@ -6,6 +6,7 @@ import net.milkbowl.vault.economy.Economy;
 import net.sacredlabyrinth.phaed.simpleclans.Clan;
 import net.sacredlabyrinth.phaed.simpleclans.SimpleClans;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -16,6 +17,8 @@ import org.bukkit.scoreboard.Scoreboard;
 import me.skelletonx.br.GladiadorReloaded.commands.ComandosAdmin;
 import me.skelletonx.br.GladiadorReloaded.commands.ComandosPlayer;
 import me.skelletonx.br.GladiadorReloaded.listeners.Eventos;
+import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager;
+import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
 
 public class Gladiador extends JavaPlugin{
 
@@ -66,6 +69,13 @@ public class Gladiador extends JavaPlugin{
         vg.limiteDeMembros = Gladiador.getGladiador().getConfig().getInt("Gladiador.Limite_De_Membros");
         vg.quantGladiadores = Gladiador.getGladiador().getConfig().getInt("Gladiador_Tag.Quantidade");
         vg.quantGladiadoresAdicionados = 0;
+        
+        if(getServer().getWorld(getConfig().getString("Localizacoes.Spawn_Entrada.World")) != null)
+        	Locations.updateCache(TeleportesManager.cache, Locations.ENTRADA, new Location(getServer().getWorld(getConfig().getString("Localizacoes.Spawn_Entrada.World")), getConfig().getDouble("Localizacoes.Spawn_Entrada.X"), getConfig().getDouble("Localizacoes.Spawn_Entrada.Y"), getConfig().getDouble("Localizacoes.Spawn_Entrada.Z")));
+        if(getServer().getWorld(getConfig().getString("Localizacoes.Spawn_Saida.World")) != null)
+        	Locations.updateCache(TeleportesManager.cache, Locations.SAIDA, new Location(getServer().getWorld(getConfig().getString("Localizacoes.Spawn_Saida.World")), getConfig().getDouble("Localizacoes.Spawn_Saida.X"), getConfig().getDouble("Localizacoes.Spawn_Saida.Y"), getConfig().getDouble("Localizacoes.Spawn_Saida.Z")));
+        if(getServer().getWorld(getConfig().getString("Localizacoes.Spawn_Camarote.World")) != null)
+        	Locations.updateCache(TeleportesManager.cache, Locations.CAMAROTE, new Location(getServer().getWorld(getConfig().getString("Localizacoes.Spawn_Camarote.World")), getConfig().getDouble("Localizacoes.Spawn_Camarote.X"), getConfig().getDouble("Localizacoes.Spawn_Camarote.Y"), getConfig().getDouble("Localizacoes.Spawn_Camarote.Z")));
         
         scoreboard = getServer().getScoreboardManager().getMainScoreboard();
         

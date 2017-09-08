@@ -65,20 +65,20 @@ Mensagens_Player:
   - '&b&l&m====================================='
 Localizacoes:
   Spawn_Entrada:
-    World: Gladiador
-    X: -662.4295186663979
-    Y: 4.0
-    Z: 1468.097419182741
+    World: world_test
+    X: 0
+    Y: 0
+    Z: 0
   Spawn_Saida:
-    World: spawn
-    X: -53.51990697373702
-    Y: 72.0
-    Z: 40.51160677907059
+    World: world_test
+    X: 0
+    Y: 0
+    Z: 0
   Spawn_Camarote:
-    World: Gladiador
-    X: -665.5430891305441
-    Y: 48.0
-    Z: 1487.8341956365075
+    World: world_test
+    X: 0
+    Y: 0
+    Z: 0
 Gladiador:
   Deixar_De_Noite: true
   Retirar_Chuva: true
@@ -86,7 +86,7 @@ Gladiador:
   Anuncio_Tempo_Entre_As_Mensagens: 10
   Limite_De_Membros: 30
   Eliminar_Randomicamente_Limite: true
-  Preco_Para_Entrar: 1000
+  Preco_Para_Entrar: 0
   Necessario_Ter_Clan_Para_Participar: true
   Ativar_Mensagens_De_Morte: true
   Ativar_Mensagens_De_Sair: true

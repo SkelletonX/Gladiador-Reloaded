@@ -2,27 +2,36 @@ package me.skelletonx.br.GladiadorReloaded.listeners;
 
 import static me.skelletonx.br.GladiadorReloaded.Gladiador.vg;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
 import me.skelletonx.br.GladiadorReloaded.Gladiador;
 import me.skelletonx.br.GladiadorReloaded.manager.TeamManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager;
+import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
 import net.sacredlabyrinth.phaed.simpleclans.Clan;
 
 public class Eventos implements Listener {
 
 	private Gladiador hg = Gladiador.getGladiador();
 	private final FileConfiguration config = hg.getConfig();
-	private TeleportesManager tm = new TeleportesManager();
 	private TeamManager teamManager = new TeamManager();
+	private List<Player> toRespawn = new ArrayList<>();
 
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent e) {
@@ -56,11 +65,20 @@ public class Eventos implements Listener {
 			if (vg.clans.get(tag) == 0) {
 				vg.clans.remove(tag);
 			}
-			e.getPlayer().teleport(tm.getTeleportSaida());
+			e.getPlayer().teleport(TeleportesManager.getTeleport(Locations.SAIDA));
 			if (config.getBoolean("Gladiador.Ativar_Mensagens_De_DC")) {
 				hg.getServer().broadcastMessage(config.getString("Mensagens_Player.DC").replace("&", "§")
 						.replace("<player>", e.getPlayer().getName()));
 			}
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	public void respawnEvent(final PlayerRespawnEvent e){
+		if(toRespawn.contains(e.getPlayer())){
+			e.setRespawnLocation(TeleportesManager.getTeleport(Locations.SAIDA));
+			toRespawn.remove(e.getPlayer());
+			Bukkit.getLogger().log(Level.INFO, "respawnEvent()");
 		}
 	}
 
@@ -78,13 +96,14 @@ public class Eventos implements Listener {
 				if (vg.isOcorrendo) {
 					if (vg.todosParticipantes.contains(e.getEntity().getPlayer())) {
 						vg.todosParticipantes.remove(e.getEntity().getPlayer());
+						toRespawn.add(e.getEntity().getPlayer());
 						String tag = hg.core.getClanManager().getClanByPlayerName(e.getEntity().getPlayer().getName())
 								.getColorTag();
 						vg.clans.put(tag, vg.clans.get(tag) - 1);
 						if (vg.clans.get(tag) == 0) {
 							vg.clans.remove(tag);
 						}
-						e.getEntity().getPlayer().teleport(tm.getTeleportSaida());
+						//e.getEntity().getPlayer().teleport(TeleportesManager.getTeleport(Locations.SAIDA));
 						if (config.getBoolean("Gladiador.Ativar_Mensagens_De_Morte")) {
 							hg.getServer()
 									.broadcastMessage(config.getString("Mensagens_Player.Morte").replace("&", "§")
@@ -102,7 +121,8 @@ public class Eventos implements Listener {
 					if (vg.clans.get(tag) == 0) {
 						vg.clans.remove(tag);
 					}
-					e.getEntity().getPlayer().teleport(tm.getTeleportSaida());
+					toRespawn.add(e.getEntity().getPlayer());
+					//e.getEntity().getPlayer().teleport(TeleportesManager.getTeleport(Locations.SAIDA));
 				}
 			}
 		}

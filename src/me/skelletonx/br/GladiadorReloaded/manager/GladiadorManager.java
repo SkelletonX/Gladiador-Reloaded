@@ -15,6 +15,7 @@ import com.outlook.devleeo.LsMito.api.LsMito;
 
 import me.skelletonx.br.GladiadorReloaded.Gladiador;
 import me.skelletonx.br.GladiadorReloaded.VariaveisGlobais;
+import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
 
 public class GladiadorManager {
 
@@ -28,6 +29,9 @@ public class GladiadorManager {
 
     public Player mito;
 
+    /*
+     * Inicia o Gladiador.
+     */
     public void iniciarAnuncios(){
         vg.isAberto = true;
         vg.isOcorrendo = true;
@@ -51,7 +55,7 @@ public class GladiadorManager {
                                 ClanPlayer a = p.get(valor);
                                 Player remove = hg.getServer().getPlayer(a.getName());
                                 vg.todosParticipantes.remove(remove);
-                                remove.teleport(tm.getTeleportSaida());
+                                remove.teleport(TeleportesManager.getTeleport(Locations.SAIDA));
                                 remove.sendMessage(config.getString("Mensagens_Player.kickado").replace("&", "§"));
                                 removePlayerInClanList(tags);
                             }
@@ -60,7 +64,7 @@ public class GladiadorManager {
                     }else{
                         sendMessageList4(config.getStringList("Mensagens_Player.Anuncio_Cancelado"), "Sem clans suficientes!");
                         for(Player p : vg.todosParticipantes){
-                            p.teleport(tm.getTeleportSaida());
+                            p.teleport(TeleportesManager.getTeleport(Locations.SAIDA));
                         }
                         vg.resetVariaveis();
                     }
@@ -162,7 +166,7 @@ public class GladiadorManager {
                         hg.economy.depositPlayer(cp.getName(), vg.premioParaLider);
                     }
                     for(Player p : vg.todosParticipantes){
-                        p.teleport(tm.getTeleportSaida());
+                        p.teleport(TeleportesManager.getTeleport(Locations.SAIDA));
                     }
                     vg.resetVariaveis();
                     hg.getServer().getScheduler().cancelTask(id2);
@@ -176,7 +180,7 @@ public class GladiadorManager {
         hg.getServer().getScheduler().cancelTask(id1);
         hg.getServer().getScheduler().cancelTask(id2);
         for(Player p : vg.todosParticipantes){
-            p.teleport(tm.getTeleportSaida());
+            p.teleport(TeleportesManager.getTeleport(Locations.SAIDA));
         }
         vg.resetVariaveis();
     }

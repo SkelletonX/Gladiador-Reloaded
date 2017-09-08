@@ -12,12 +12,12 @@ import org.bukkit.entity.Player;
 
 import me.skelletonx.br.GladiadorReloaded.Gladiador;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager;
+import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
 
 public class ComandosPlayer implements CommandExecutor{
 
     private Gladiador hg = Gladiador.getGladiador();
     private final FileConfiguration config = hg.getConfig();
-    private TeleportesManager tm = new TeleportesManager();
     
 	@Override
     public boolean onCommand(CommandSender cs, Command cmd, String string, String[] args) {
@@ -41,7 +41,7 @@ public class ComandosPlayer implements CommandExecutor{
                                 }
                                 if(hg.economy.getBalance(p.getName()) >= vg.precoParaParticipar){
                                     if(!vg.todosParticipantes.contains(p)){
-                                        p.teleport(tm.getTeleportEntrada());
+                                        p.teleport(TeleportesManager.getTeleport(Locations.ENTRADA));
                                         hg.economy.withdrawPlayer(p.getName(), vg.precoParaParticipar);
                                         vg.todosParticipantes.add(p);
                                         addClanInList(p);
@@ -71,7 +71,7 @@ public class ComandosPlayer implements CommandExecutor{
                     if(p.hasPermission("Gladiador.sair")){
                         if(vg.isAberto){
                             if(vg.todosParticipantes.contains(p)){
-                                p.teleport(tm.getTeleportSaida());
+                                p.teleport(TeleportesManager.getTeleport(Locations.SAIDA));
                                 vg.todosParticipantes.remove(p);
                                 vg.clans.put(hg.core.getClanManager().getClanByPlayerName(p.getName()).getColorTag(), vg.clans.get(hg.core.getClanManager().getClanByPlayerName(p.getName()).getColorTag()) - 1);
                                 String tag = hg.core.getClanManager().getClanByPlayerName(p.getName()).getColorTag();
@@ -96,7 +96,7 @@ public class ComandosPlayer implements CommandExecutor{
             }else if(args.length == 1 && (args[0].equalsIgnoreCase("camarote"))){
                 if(p.hasPermission("Gladiador.camarote")){
                     if(vg.isOcorrendo){
-                        p.teleport(tm.getTeleportCamarote());
+                        p.teleport(TeleportesManager.getTeleport(Locations.CAMAROTE));
                         p.sendMessage(config.getString("Mensagens_Player.Camarote").replace("&", "§"));
                         return true;
                     }else{
