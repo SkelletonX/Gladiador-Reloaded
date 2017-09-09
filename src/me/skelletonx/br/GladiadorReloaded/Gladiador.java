@@ -17,6 +17,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import me.skelletonx.br.GladiadorReloaded.commands.ComandosAdmin;
 import me.skelletonx.br.GladiadorReloaded.commands.ComandosPlayer;
 import me.skelletonx.br.GladiadorReloaded.listeners.Eventos;
+import me.skelletonx.br.GladiadorReloaded.manager.MitoManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
 
@@ -93,7 +94,6 @@ public class Gladiador extends JavaPlugin{
     public static Gladiador getGladiador(){
         return (Gladiador) Bukkit.getServer().getPluginManager().getPlugin("GladiadorReloaded");
     }
-    
     private boolean hookSimpleClans(){
         try {
             for (Plugin plugin : getServer().getPluginManager().getPlugins()) {

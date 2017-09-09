@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import me.skelletonx.br.GladiadorReloaded.Gladiador;
 import me.skelletonx.br.GladiadorReloaded.manager.GladiadorManager;
+import me.skelletonx.br.GladiadorReloaded.manager.MitoManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
 import net.sacredlabyrinth.phaed.simpleclans.Clan;

@@ -3,11 +3,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="C:/Users/JonasXPX/Desktop/Super mini server/FixSpigot.jar"/>
-	<classpathentry kind="lib" path="C:/Users/JonasXPX/Desktop/Super mini server/plugins/Legendchat.jar"/>
-	<classpathentry kind="lib" path="C:/Users/JonasXPX/Desktop/Super mini server/plugins/Vault-1.4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/JonasXPX/Desktop/Super mini server/plugins/SimpleClans.jar"/>
-	<classpathentry kind="lib" path="C:/Users/JonasXPX/Desktop/Super mini server/plugins/Mito.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="D:/SkelletonX/ExplosionPVP/craftbukkit-1.9-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry kind="lib" path="D:/SkelletonX/ExplosionPVP/plugins/SimpleClans.jar"/>
+	<classpathentry kind="lib" path="D:/SkelletonX/ExplosionPVP/plugins/Vault.jar"/>
+	<classpathentry kind="lib" path="D:/SkelletonX/ExplosionPVP/plugins/LegendChat.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

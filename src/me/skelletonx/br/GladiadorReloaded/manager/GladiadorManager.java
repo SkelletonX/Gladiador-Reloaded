@@ -11,8 +11,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
-import com.outlook.devleeo.LsMito.api.LsMito;
-
 import me.skelletonx.br.GladiadorReloaded.Gladiador;
 import me.skelletonx.br.GladiadorReloaded.VariaveisGlobais;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
@@ -42,7 +40,7 @@ public class GladiadorManager {
             public void run() {
                 if(vg.quantMensagens >= 0){
                     for (String s : config.getStringList("Mensagens_Player.Anuncio_Aberto")) {
-                        hg.getServer().broadcastMessage(s.replace("&", "ยง").replace("<preco>", String.valueOf(vg.precoParaParticipar)).replace("<limite>", String.valueOf(vg.limiteDeMembros)).replace("<players>", String.valueOf(vg.todosParticipantes.size())).replace("<clans>", String.valueOf(vg.clans.keySet().size())));
+                        hg.getServer().broadcastMessage(s.replace("&", "ง").replace("<preco>", String.valueOf(vg.precoParaParticipar)).replace("<limite>", String.valueOf(vg.limiteDeMembros)).replace("<players>", String.valueOf(vg.todosParticipantes.size())).replace("<clans>", String.valueOf(vg.clans.keySet().size())));
                     }
                     vg.quantMensagens -= 1;
                 }else{
@@ -103,9 +101,7 @@ public class GladiadorManager {
     	{
     		String PlayerSortudo = player.getName();
     		if(PlayerSortudo != null & Math.random() >= chance) {
-    			LsMito.setMito(PlayerSortudo);
-                config.set("Mito_Tag.Jogador_Com_A_Tag_Atual", PlayerSortudo);
-                hg.saveConfig();
+    			MitoManager.SetMito(player.toPlayer());
                 mito = player.toPlayer();
     		}
     	}
@@ -192,11 +188,11 @@ public class GladiadorManager {
             if(builder.toString().isEmpty()){
                 builder.append(clann.getColorTag());
             }else{
-                builder.append("ยง0, " + clann.getColorTag());
+                builder.append("ง0, " + clann.getColorTag());
             }
         }
         for (String s : mensagens) {
-        	hg.getServer().broadcastMessage(s.replace("&", "ยง").replace("<preco>", String.valueOf(vg.precoParaParticipar)).replace("<limite>", String.valueOf(vg.limiteDeMembros)).replace("<players>", String.valueOf(vg.todosParticipantes.size())).replace("<clans>", builder.toString()));
+        	hg.getServer().broadcastMessage(s.replace("&", "ง").replace("<preco>", String.valueOf(vg.precoParaParticipar)).replace("<limite>", String.valueOf(vg.limiteDeMembros)).replace("<players>", String.valueOf(vg.todosParticipantes.size())).replace("<clans>", builder.toString()));
         }
         /*StringBuilder builder = new StringBuilder(); 
         for (String s : mensagens) {
@@ -216,12 +212,12 @@ public class GladiadorManager {
             for(Player p : gladiadores){
             	if(mito != null){
             		if(gladiadores != null){
-            			hg.getServer().broadcastMessage(s.replace("&", "ยง").replace("<vencedor>", vencedor.getColorTag()).replace("<gladiadores>", p.getName()).replace("<mito>", mito.getName()));
+            			hg.getServer().broadcastMessage(s.replace("&", "ง").replace("<vencedor>", vencedor.getColorTag()).replace("<gladiadores>", p.getName()).replace("<mito>", mito.getName()));
             		}else{
-            			hg.getServer().broadcastMessage(s.replace("&", "ยง").replace("<vencedor>", vencedor.getColorTag()).replace("<mito>", mito.getName()));
+            			hg.getServer().broadcastMessage(s.replace("&", "ง").replace("<vencedor>", vencedor.getColorTag()).replace("<mito>", mito.getName()));
             		}
             	}else{
-            		hg.getServer().broadcastMessage(s.replace("&", "ยง").replace("<vencedor>", vencedor.getColorTag()).replace("<gladiadores>", p.getName()));
+            		hg.getServer().broadcastMessage(s.replace("&", "ง").replace("<vencedor>", vencedor.getColorTag()).replace("<gladiadores>", p.getName()));
             	}
             }
         }
@@ -229,7 +225,7 @@ public class GladiadorManager {
     
     private void sendMessageList4(List<String> mensagens, String motivo){
         for (String s : mensagens) {
-            hg.getServer().broadcastMessage(s.replace("&", "ยง").replace("<motivo>", motivo));
+            hg.getServer().broadcastMessage(s.replace("&", "ง").replace("<motivo>", motivo));
         }
     }
 

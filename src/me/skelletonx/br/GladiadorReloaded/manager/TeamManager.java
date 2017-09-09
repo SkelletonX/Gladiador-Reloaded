@@ -15,7 +15,6 @@ public class TeamManager {
       }
       Team t = hg.scoreboard.registerNewTeam(jogador.toUpperCase() + "_");
       t.addPlayer(Bukkit.getOfflinePlayer(jogador));
-      //t.addEntry(jogador);
     }
 
     public void deletar(String jogador) {

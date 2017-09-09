@@ -17,10 +17,10 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
 import me.skelletonx.br.GladiadorReloaded.Gladiador;
+import me.skelletonx.br.GladiadorReloaded.manager.MitoManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeamManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager;
 import me.skelletonx.br.GladiadorReloaded.manager.TeleportesManager.Locations;
@@ -35,6 +35,9 @@ public class Eventos implements Listener {
 
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent e) {
+		if(e.getPlayer().getName() == config.getString("Mito_Tag.Jogador_Com_A_Tag_Atual")) {
+			Bukkit.broadcastMessage("§5[MITO] §c "+ e.getPlayer().getName() +" logou no Servidor!");
+		}
 		if (e.getPlayer().hasPermission("Gladiador.staff")) {
 			if (vg.isOcorrendo) {
 				e.getPlayer().sendMessage("§4[Gladiador] §cO evento gladiador esta ocorrendo no momento!");
@@ -89,8 +92,8 @@ public class Eventos implements Listener {
 				Player matou = e.getEntity().getKiller();
 				Player morreu = e.getEntity().getPlayer();
 				if (morreu.getName().equalsIgnoreCase(config.getString("Mito_Tag.Jogador_Com_A_Tag_Atual"))) {
-					config.set("Mito_Tag.Jogador_Com_A_Tag_Atual", matou.getName());
-					hg.saveConfig();
+					System.out.print(matou.getName() + "why ?");
+					MitoManager.SetMito(matou.getPlayer());
 				}
 
 				if (vg.isOcorrendo) {
