@@ -35,8 +35,8 @@ public class Eventos implements Listener {
 
 	@EventHandler
 	public void onPlayerJoinEvent(PlayerJoinEvent e) {
-		if(e.getPlayer().getName() == config.getString("Mito_Tag.Jogador_Com_A_Tag_Atual")) {
-			Bukkit.broadcastMessage("§5[MITO] §c "+ e.getPlayer().getName() +" logou no Servidor!");
+		if(e.getPlayer().getName().equalsIgnoreCase(config.getString("Mito_Tag.Jogador_Com_A_Tag_Atual"))) {
+			Bukkit.broadcastMessage("§5[MITO]§c "+ e.getPlayer().getName() +" logou no Servidor!");
 		}
 		if (e.getPlayer().hasPermission("Gladiador.staff")) {
 			if (vg.isOcorrendo) {

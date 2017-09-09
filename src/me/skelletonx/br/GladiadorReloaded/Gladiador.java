@@ -57,6 +57,7 @@ public class Gladiador extends JavaPlugin{
         }
 
         getCommand("gladiador").setExecutor(new ComandosPlayer());
+        getCommand("mito").setExecutor(new ComandosPlayer());
         getCommand("gladiadoradmin").setExecutor(new ComandosAdmin());
         
         vg.isOcorrendo = false;

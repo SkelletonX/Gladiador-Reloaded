@@ -1,6 +1,5 @@
 package me.skelletonx.br.GladiadorReloaded.manager;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 import org.bukkit.Bukkit;
@@ -8,9 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Bat;
-import org.bukkit.entity.Pig;
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffectType;
 
 
 import me.skelletonx.br.GladiadorReloaded.Gladiador;

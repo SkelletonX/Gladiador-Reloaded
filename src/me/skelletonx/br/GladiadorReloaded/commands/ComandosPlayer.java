@@ -24,7 +24,9 @@ public class ComandosPlayer implements CommandExecutor{
         Player p;
         if(cs instanceof Player){
             p = (Player)cs;
-            
+            if(cmd.getName().equalsIgnoreCase("mito")) {
+            	p.sendMessage("§5[MITO] §cJogador Mito Atual: "+config.getString("Mito_Tag.Jogador_Com_A_Tag_Atual"));
+            }
             if(cmd.getName().equalsIgnoreCase("gladiador")){
                 if(args.length == 0){
                     sendMessageList(p, config.getStringList("Mensagens_Player.Default"));
