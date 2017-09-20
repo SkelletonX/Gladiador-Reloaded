@@ -34,7 +34,7 @@ public class ComandosAdmin implements CommandExecutor{
         if(cmd.getName().equalsIgnoreCase("gladiadoradmin")){
             if(cs.hasPermission("gladiador.staff")){
                 if(args.length == 0){
-                    cs.sendMessage("§4[Gladiador] Comandos");
+                    cs.sendMessage("§4[[GladiadorReloaded]] Comandos");
                     cs.sendMessage("§4/gladadm iniciar §c- Inicia o gladiador");
                     cs.sendMessage("§4/gladadm cancelar §c- Cancela o gladiador");
                     cs.sendMessage("§4/gladadm kickplayer <player> §c- Kika um jogador do gladiador");

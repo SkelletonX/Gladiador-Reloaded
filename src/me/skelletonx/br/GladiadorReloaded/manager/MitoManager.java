@@ -29,7 +29,8 @@ public class MitoManager {
 		loc.getWorld().strikeLightningEffect(pMito.getLocation().add(-2, 0, 2));
 		loc.getWorld().strikeLightningEffect(pMito.getLocation().add(2, 0, -2));
 		HashSet<Bat> spawnedBats = new HashSet<>();
-		for (int i = 0; i < 5; i++)
+		int bats = 5; // 5 spawnedBats mobs  
+		for (int i = 0; i < bats; i++)
 		{
 			for(Player players : hg.getServer().getOnlinePlayers()) {
 			Bat bat = pMito.getWorld().spawn(loc.add(players.getLocation()), Bat.class);

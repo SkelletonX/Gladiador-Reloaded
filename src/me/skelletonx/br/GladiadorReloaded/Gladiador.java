@@ -33,27 +33,27 @@ public class Gladiador extends JavaPlugin{
         setupEconomy();
         
         if(!hookSimpleClans()){
-            System.out.println("[Gladiador] Plugin Desabilitado - SimpleClans Nao Encontrado");
+            System.out.println("[GladiadorReloaded] Plugin Desabilitado - SimpleClans Nao Encontrado");
             getPluginLoader().disablePlugin(this);
         }else{
-            System.out.println("[Gladiador] Hook Com SimpleClans Ativado");
+            System.out.println("[GladiadorReloaded] Hook Com SimpleClans Ativado");
         }
         
         if (!new File(getDataFolder(), "config.yml").exists()){
             saveDefaultConfig();
-            System.out.println("[Gladiador] Config.yml Criada Com Sucesso");
+            System.out.println("[GladiadorReloaded] Config.yml Criada Com Sucesso");
         }
         
         getServer().getPluginManager().registerEvents(new Eventos(), this);
-        System.out.println("[Gladiador] Eventos Registrados Com Sucesso");
+        System.out.println("[GladiadorReloaded] Eventos Registrados Com Sucesso");
         
         if(getConfig().getBoolean("Clan_Tag.Ativar_Tab_Tag")){
             TabTag tt = new TabTag();
             tt.iniciarTabTagAndCustomNameTag();
             if(getConfig().getBoolean("Clan_Tag.Ativar_Custom_Name_Tag")){
-                System.out.println("[Gladiador] Tag Do Clan No Custom Name Ativado");
+                System.out.println("[GladiadorReloaded] Tag Do Clan No Custom Name Ativado");
             }
-            System.out.println("[Gladiador] Tag Do Clan No TAB Ativado");
+            System.out.println("[GladiadorReloaded] Tag Do Clan No TAB Ativado");
         }
 
         getCommand("gladiador").setExecutor(new ComandosPlayer());
@@ -84,12 +84,12 @@ public class Gladiador extends JavaPlugin{
          if(getConfig().getBoolean("Automacao.Ativar")){
              iniciarSchedulerDeAutomacao();
          }
-        System.out.println("[Gladiador] Plugin Habilitado - Versao (V " + getDescription().getVersion() + ")");
+        System.out.println("[GladiadorReloaded] Plugin Habilitado - Versao (V " + getDescription().getVersion() + ")");
     }
 
     @Override
     public void onDisable() {
-        System.out.println("[Gladiador] Plugin Desabilitado - Versao (V " + getDescription().getVersion() + ")");
+        System.out.println("[GladiadorReloaded] Plugin Desabilitado - Versao (V " + getDescription().getVersion() + ")");
     }
     
     public static Gladiador getGladiador(){

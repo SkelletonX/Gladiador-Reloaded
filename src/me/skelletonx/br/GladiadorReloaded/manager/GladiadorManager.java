@@ -74,15 +74,13 @@ public class GladiadorManager {
     private void Gladiadores()
     {
     	//Converte a chance de (0~100) pra (0~1), 10 = 0.1, 5 = 0.05
-    	//config.getInt("Gladiador_Tag.ChanceSorteio")
     	gladiadores.clear();
     	double chance = 30 / 100;
     	for(ClanPlayer player : vencedor.getOnlineMembers())
     	{
     		String name = player.getName();
     		System.out.println(name);
-    		
-    		//Se o nome for legível e a chance for maior que o número gerado
+    	
     		if(name != null && Math.random() >= chance)
     		{
     			gladiadores.add(hg.getServer().getPlayer(name));

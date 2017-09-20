@@ -106,7 +106,6 @@ public class Eventos implements Listener {
 						if (vg.clans.get(tag) == 0) {
 							vg.clans.remove(tag);
 						}
-						//e.getEntity().getPlayer().teleport(TeleportesManager.getTeleport(Locations.SAIDA));
 						if (config.getBoolean("Gladiador.Ativar_Mensagens_De_Morte")) {
 							hg.getServer()
 									.broadcastMessage(config.getString("Mensagens_Player.Morte").replace("&", "§")
@@ -125,7 +124,6 @@ public class Eventos implements Listener {
 						vg.clans.remove(tag);
 					}
 					toRespawn.add(e.getEntity().getPlayer());
-					//e.getEntity().getPlayer().teleport(TeleportesManager.getTeleport(Locations.SAIDA));
 				}
 			}
 		}
@@ -142,11 +140,9 @@ public class Eventos implements Listener {
 		}
 		if (vg.isGladiadorEnable) {
 			if (e.getTags().contains("gladiador")) {
-				for (String s : config.getStringList("Gladiador_Tag.Jogador_Com_A_Tag_Atual")) {
-					if (e.getSender().getName().equalsIgnoreCase(s)) {
+					if (e.getSender().getName().equalsIgnoreCase(config.getString("Gladiador_Tag.Jogador_Com_A_Tag_Atual"))) {
 						e.setTagValue("gladiador", config.getString("Gladiador_Tag.Tag").replace("&", "§"));
 					}
-				}
 			}
 		}
 	}

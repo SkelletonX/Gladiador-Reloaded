@@ -1,8 +1,7 @@
 main: me.skelletonx.br.GladiadorReloaded.Gladiador
 name: GladiadorReloaded
 author: Herobrinedobem and SkelletonX
-version: 1.5.1
-description: Plugin de gladiador automatico base totalmente feita e varios eventos por Herobrinedobem, o plugin é dele
+version: 1.6.0
 
 commands:
   gladiador:
